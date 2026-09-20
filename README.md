@@ -43,9 +43,9 @@ A full-stack e-commerce price monitoring application that tracks live prices and
 
 ## Live Links
 
-- **Frontend**: [URL]
-- **Backend**: [URL]
-- **GitHub Repository**: [URL]
+- **Frontend**: https://price-tracker-sable-nine.vercel.app/
+- **Backend**: https://pricetracker-y9ze.onrender.com
+- **GitHub Repository**: https://github.com/SgAtjiit/PriceTracker
 
 ---
 
