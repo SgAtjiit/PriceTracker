@@ -39,6 +39,10 @@ if (allowedOrigins.length > 0) {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.json({ ok: true, status: 'ok' });
+});
+
 // Direct health check endpoint
 app.get('/health', (req, res) =>
   res.json({

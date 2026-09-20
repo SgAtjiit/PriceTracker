@@ -248,7 +248,7 @@ To ensure resilience without exhausting free-tier compute:
 - **Trade-Offs**: Free-tier hosting limits resources; running Chromium incurs memory overhead, and concurrency is intentionally capped at 2 rather than processing large batches in parallel. Endpoints are public without user authentication, operating against a single shared monitored catalog.
 
 ### What My AI Tools Got Wrong and How I Fixed It
-<!-- USER: verify these match what really happened -->
+
 1. **Ephemeral In-Memory Catalog Search**: Initial drafts implemented catalog search via an in-memory cache populated from upstream. On Render cold starts, this cache was repeatedly lost, causing search requests to freeze while re-fetching the flaky demo store. *Fix*: Migrated catalog search to a persistent Supabase table (`catalog_products`) synced during startup and batch runs.
 2. **Unguarded Browser Launches**: Batch runs used concurrency 2, but on-demand and initial tracking scrapes launched unthrottled browsers simultaneously, exceeding server memory. *Fix*: Implemented a shared `globalScrapeSemaphore` (limit 2) wrapping all Playwright launches.
 3. **Premature Attempt Logging**: Early code only recorded scrape logs after all 3 retry attempts completed. If a process was interrupted, attempt history was lost. *Fix*: Refactored to write each attempt log immediately to `scrape_log` upon completion.
